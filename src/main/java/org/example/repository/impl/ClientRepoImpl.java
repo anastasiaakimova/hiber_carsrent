@@ -66,6 +66,4 @@ public class ClientRepoImpl extends SessionUtil implements ClientRepo {
         //close session with a transaction
         closeTransactionSesstion();
     }
-
-
 }
