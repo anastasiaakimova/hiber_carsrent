@@ -11,6 +11,9 @@ import java.util.Scanner;
 public class ClientView {
     private Scanner scanner = new Scanner(System.in);
     private Scanner scanner1 = new Scanner(System.in);
+    private Scanner scanner2 = new Scanner(System.in);
+    private Scanner scanner3 = new Scanner(System.in);
+    private Scanner scanner4 = new Scanner(System.in);
     private ClientController clientController = new ClientController();
 
     public void showClients() throws SQLException {
@@ -24,19 +27,19 @@ public class ClientView {
             Client newClient = new Client();
 
             System.out.println("Введите имя :");
-            String firstName = scanner.nextLine();
+            String firstName = scanner1.nextLine();
             newClient.setFirstName(firstName);
 
             System.out.println("Введите фамилию :");
-            String lastName = scanner.nextLine();
+            String lastName = scanner1.nextLine();
             newClient.setLastName(lastName);
 
             System.out.println("Введите пароль :");
-            String password = scanner.nextLine();
+            String password = scanner1.nextLine();
             newClient.setPassword(password);
 
             System.out.println("Введите адрес :");
-            String address = scanner.nextLine();
+            String address = scanner1.nextLine();
             newClient.setAddress(address);
 
             System.out.println("Введите номер телефона:");
@@ -59,29 +62,29 @@ public class ClientView {
     public void updateClient() throws SQLException {
         try {
             System.out.println("Enter id in order to find element :");
-            Long id = Long.parseLong(scanner.next());
+            Long id = Long.parseLong(scanner2.next());
 
-            Client newClient = new Client();
+            Client newClient;
             newClient =clientController.getClientById(id);
 
             System.out.println("Введите имя :");
-            String firstName = scanner1.nextLine();
+            String firstName = scanner3.nextLine();
             newClient.setFirstName(firstName);
 
             System.out.println("Введите фамилию :");
-            String lastName = scanner1.nextLine();
+            String lastName = scanner3.nextLine();
             newClient.setLastName(lastName);
 
             System.out.println("Введите пароль :");
-            String password = scanner1.nextLine();
+            String password = scanner3.nextLine();
             newClient.setPassword(password);
 
             System.out.println("Введите адрес :");
-            String address = scanner1.nextLine();
+            String address = scanner3.nextLine();
             newClient.setAddress(address);
 
             System.out.println("Введите номер телефона:");
-            String phoneNumber = scanner1.nextLine();
+            String phoneNumber = scanner3.nextLine();
             newClient.setPhoneNumber(phoneNumber);
 
             clientController.editClient(newClient);
@@ -94,8 +97,12 @@ public class ClientView {
         System.out.println("Enter id in order to get user :");
         Long id = Long.parseLong(scanner.next());
         try {
-            if (clientController.getClientById(id) != null)
-                System.out.println(clientController.getClientById(id).toString());
+            if (clientController.getClientById(id) != null){
+                System.out.println(clientController.getClientById(id).toString());}
+
+            else {
+                System.out.println("This id is doesn't exist");
+            }
 
         } catch (NullPointerException | SQLException e) {
             System.out.println("There is no such number ");
