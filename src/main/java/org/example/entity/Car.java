@@ -8,8 +8,8 @@ public class Car {
     private Long id;
     private String model;
     private String color;
-    private BigDecimal price;
-    private Byte availability;
+    private Integer price;
+    private Integer availability;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,21 +44,21 @@ public class Car {
 
     @Basic
     @Column(name = "price", nullable = true, precision = 3)
-    public BigDecimal getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
     @Basic
     @Column(name = "availability", nullable = true)
-    public Byte getAvailability() {
+    public Integer getAvailability() {
         return availability;
     }
 
-    public void setAvailability(Byte availability) {
+    public void setAvailability(Integer availability) {
         this.availability = availability;
     }
 
@@ -86,5 +86,14 @@ public class Car {
         result = 31 * result + (price != null ? price.hashCode() : 0);
         result = 31 * result + (availability != null ? availability.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "id " + id +
+                ", model " + model +
+                ", color " + color  +
+                ", price " + price +
+                ", availability " + availability;
     }
 }

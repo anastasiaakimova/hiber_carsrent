@@ -1,21 +1,21 @@
 package org.example.repository;
 
-import org.example.entity.Client;
+import org.example.entity.Car;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public interface CarRepo {
     //create
-    void add(Client client) throws SQLException;
+    void add(Car car) throws SQLException;
 
     //read
-    List<Client> getAll() throws SQLException;
+    List<Car> getAll() throws SQLException;
 
-    Client getById(Long id) throws SQLException;
+    Car getById(Long id) throws SQLException;
 
     //update
-    Client update(Client client) throws SQLException;
+    Car update(Car car) throws SQLException;
 
     //delete
     void remove(Long id) throws SQLException;
