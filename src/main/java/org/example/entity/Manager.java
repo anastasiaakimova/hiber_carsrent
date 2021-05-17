@@ -1,17 +1,29 @@
 package org.example.entity;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 public class Manager {
-    private Long id;
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
+    private Long id;
+
+    @Basic
+    @Column(name = "first_name", nullable = true, length = 120)
+    private String firstName;
+    @Basic
+    @Column(name = "last_name", nullable = true, length = 120)
+    private String lastName;
+
+    @Basic
+    @Column(name = "phone_number", nullable = true, length = 120)
+    private String phoneNumber;
+
+    @OneToMany(mappedBy = "manager", cascade = {CascadeType.ALL})
+    private Collection<Contract> contracts;
+
 
     public Long getId() {
         return id;
@@ -20,8 +32,7 @@ public class Manager {
     public void setId(Long id) {
         this.id = id;
     }
-    @Basic
-    @Column(name = "first_name", nullable = true, length = 120)
+
     public String getFirstName() {
         return firstName;
     }
@@ -30,8 +41,6 @@ public class Manager {
         this.firstName = firstName;
     }
 
-    @Basic
-    @Column(name = "last_name", nullable = true, length = 120)
     public String getLastName() {
         return lastName;
     }
@@ -40,14 +49,20 @@ public class Manager {
         this.lastName = lastName;
     }
 
-    @Basic
-    @Column(name = "phone_number", nullable = true, length = 120)
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Collection<Contract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(Collection<Contract> contracts) {
+        this.contracts = contracts;
     }
 
     @Override
