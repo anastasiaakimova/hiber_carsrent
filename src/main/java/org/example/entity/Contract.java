@@ -6,16 +6,36 @@ import java.sql.Date;
 
 @Entity
 public class Contract {
-    private Long id;
-    private Date date;
-    private Integer amountOfDays;
-    private BigDecimal cost;
-    private Car carByCar;
-    private Client clientByClient;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
+    private Long id;
+
+    @Basic
+    @Column(name = "date", nullable = true)
+    private Date date;
+    @Basic
+    @Column(name = "amount_of_days", nullable = true)
+    private Integer amountOfDays;
+
+    @Basic
+    @Column(name = "cost", nullable = true, precision = 3)
+    private BigDecimal cost;
+
+    @Access(AccessType.PROPERTY)
+    @ManyToOne(targetEntity = Car.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "car", referencedColumnName = "id")
+    private Car car;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "client", referencedColumnName = "id")
+    private Client client;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "manager", referencedColumnName = "id")
+    private Manager manager;
+
+
     public Long getId() {
         return id;
     }
@@ -24,8 +44,7 @@ public class Contract {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "date", nullable = true)
+
     public Date getDate() {
         return date;
     }
@@ -34,8 +53,6 @@ public class Contract {
         this.date = date;
     }
 
-    @Basic
-    @Column(name = "amount_of_days", nullable = true)
     public Integer getAmountOfDays() {
         return amountOfDays;
     }
@@ -44,14 +61,38 @@ public class Contract {
         this.amountOfDays = amountOfDays;
     }
 
-    @Basic
-    @Column(name = "cost", nullable = true, precision = 3)
     public BigDecimal getCost() {
         return cost;
     }
 
     public void setCost(BigDecimal cost) {
         this.cost = cost;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car carByCar) {
+        this.car = carByCar;
+    }
+
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client clientByClient) {
+        this.client = clientByClient;
+    }
+
+
+    public Manager getManager() {
+        return manager;
+    }
+
+    public void setManager(Manager managerByManager) {
+        this.manager = managerByManager;
     }
 
     @Override
@@ -77,25 +118,5 @@ public class Contract {
         result = 31 * result + (amountOfDays != null ? amountOfDays.hashCode() : 0);
         result = 31 * result + (cost != null ? cost.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "car", referencedColumnName = "id")
-    public Car getCarByCar() {
-        return carByCar;
-    }
-
-    public void setCarByCar(Car carByCar) {
-        this.carByCar = carByCar;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "client", referencedColumnName = "id")
-    public Client getClientByClient() {
-        return clientByClient;
-    }
-
-    public void setClientByClient(Client clientByClient) {
-        this.clientByClient = clientByClient;
     }
 }
