@@ -8,6 +8,8 @@ public class CommonView {
     private ClientView clientView;
     private static CommonView view;
     private static CarView carView;
+    private static ManagerView managerView;
+    private static ContractView contractView;
 
     private CommonView() {
         clientView = new ClientView();
@@ -25,13 +27,13 @@ public class CommonView {
         Scanner scanner = new Scanner(System.in);
         boolean go = true;
         while (go) {
-            System.out.println("\nChoose file in order to do operations , please :");
-            System.out.println("Enter number : ");
-            System.out.println("1. Client");
-            System.out.println("2. Car");
-            System.out.println("3. ");
-            System.out.println("4. ");
-            System.out.println("5. Exit");
+            System.out.println("\nВыберите опцию для операции: ");
+            System.out.println("Введите число : ");
+            System.out.println("1. Клиент");
+            System.out.println("2. Машина");
+            System.out.println("3. Менаджер");
+            System.out.println("4. Контракт");
+            System.out.println("5. Выход");
 
             int number = scanner.nextInt();
             switch (number) {
@@ -41,17 +43,28 @@ public class CommonView {
                 case 2:
                     runCar();
                     break;
-                //                case 3:
-//                    runComment();
-//                    break;
+                case 3:
+                    runManager();
+                    break;
+                case 4:
+                    runContract();
+                    break;
                 case 5:
                     go = false;
                     break;
                 default:
-                    System.out.println("Wrong number");
-                    System.out.println("Enter number from 1 to 4, please");
+                    System.out.println("Не верное число");
+                    System.out.println("Введите числа от 1 до 4, пожалуйста");
             }
         }
+    }
+
+    private void runManager() throws SQLException {
+        managerView.run();
+    }
+
+    private void runContract() throws SQLException {
+        contractView.run();
     }
 
     public void runClient() throws SQLException {
@@ -61,10 +74,5 @@ public class CommonView {
     public void runCar() throws SQLException {
         carView.run();
     }
-//
-//    public void runUser() {
-//        userView.run();
-//    }
-
 }
 
