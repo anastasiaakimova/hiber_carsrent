@@ -18,7 +18,7 @@ public class ClientView {
 
     public void showClients() throws SQLException {
         List<Client> clients = clientController.getAllClients();
-        System.out.println("List of all clients : ");
+        System.out.println("Список клиентов: ");
         clients.forEach(client1 -> System.out.println(client1.toString()));
     }
 
@@ -54,14 +54,14 @@ public class ClientView {
     }
 
     public void deleteClient() throws SQLException {
-        System.out.println("Enter id delete client : ");
+        System.out.println("Введите id клиента, которого хотите удалить : ");
         Long id = Long.parseLong(scanner.next());
         clientController.deleteClient(id);
     }
 
     public void updateClient() throws SQLException {
         try {
-            System.out.println("Enter id in order to find element :");
+            System.out.println("Введите id клиента, информацию которого хотите изменить:");
             Long id = Long.parseLong(scanner2.next());
 
             Client newClient;
@@ -94,19 +94,19 @@ public class ClientView {
     }
 
     public void getByIdClient() throws SQLException {
-        System.out.println("Enter id in order to get user :");
+        System.out.println("введите id клиента которго хотите найти:");
         Long id = Long.parseLong(scanner.next());
         try {
             if (clientController.getClientById(id) != null){
                 System.out.println(clientController.getClientById(id).toString());}
 
             else {
-                System.out.println("This id is doesn't exist");
+                System.out.println("Такого клиента не существует в базе");
             }
 
         } catch (NullPointerException | SQLException e) {
-            System.out.println("There is no such number ");
-            System.out.println("Try one more time, please");
+            System.out.println("Это не число ");
+            System.out.println("Попробуйте еще раз, пожалуйста");
             getByIdClient();
         }
     }
@@ -114,14 +114,14 @@ public class ClientView {
     public void run() throws SQLException {
         boolean go = true;
         while (go) {
-            System.out.println("\n Choose option, please :");
-            System.out.println(" Enter number : ");
-            System.out.println(" 1. Show all rows");
-            System.out.println(" 2. Insert new row");
-            System.out.println(" 3. Delete row ");
-            System.out.println(" 4. Update row  ");
-            System.out.println(" 5. Search by id ");
-            System.out.println(" 6. End ");
+            System.out.println("\n Выберите опцию, пожалуйста :");
+            System.out.println(" Введите число : ");
+            System.out.println(" 1. Показать всех клиентов");
+            System.out.println(" 2. Добавить нового клиента");
+            System.out.println(" 3. Удалить клиента ");
+            System.out.println(" 4. Обновить информацию о клиенте  ");
+            System.out.println(" 5. Найти по id");
+            System.out.println(" 6. Выйти ");
             int number = scanner.nextInt();
             switch (number) {
                 case 1:
@@ -143,8 +143,8 @@ public class ClientView {
                     go = false;
                     break;
                 default:
-                    System.out.println("Wrong number");
-                    System.out.println("Enter number from 1 to 6, please");
+                    System.out.println("Неверное число!");
+                    System.out.println("Введите число от 1 до 6, пожалуйста");
             }
         }
     }

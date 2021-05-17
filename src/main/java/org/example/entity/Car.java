@@ -1,20 +1,32 @@
 package org.example.entity;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
+import java.util.Collection;
 
 @Entity
 public class Car {
-    private Long id;
-    private String model;
-    private String color;
-    private Integer price;
-    private Integer availability;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    public Long getId() {
+    private Long id;
+    @Basic
+    @Column(name = "model", nullable = true, length = 120)
+    private String model;
+    @Basic
+    @Column(name = "color", nullable = true, length = 120)
+    private String color;
+    @Basic
+    @Column(name = "price", nullable = true, precision = 3)
+    private Integer price;
+
+    @Basic
+    @Column(name = "availability", nullable = true)
+    private Integer availability;
+
+    @OneToMany(targetEntity=Contract.class, mappedBy = "car", cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
+    private Collection<Contract> contracts;
+
+   public Long getId() {
         return id;
     }
 
@@ -22,9 +34,7 @@ public class Car {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "model", nullable = true, length = 120)
-    public String getModel() {
+     public String getModel() {
         return model;
     }
 
@@ -32,8 +42,6 @@ public class Car {
         this.model = model;
     }
 
-    @Basic
-    @Column(name = "color", nullable = true, length = 120)
     public String getColor() {
         return color;
     }
@@ -42,9 +50,7 @@ public class Car {
         this.color = color;
     }
 
-    @Basic
-    @Column(name = "price", nullable = true, precision = 3)
-    public Integer getPrice() {
+   public Integer getPrice() {
         return price;
     }
 
@@ -52,8 +58,6 @@ public class Car {
         this.price = price;
     }
 
-    @Basic
-    @Column(name = "availability", nullable = true)
     public Integer getAvailability() {
         return availability;
     }
@@ -95,5 +99,13 @@ public class Car {
                 ", color " + color  +
                 ", price " + price +
                 ", availability " + availability;
+    }
+
+    public Collection<Contract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(Collection<Contract> contractsById) {
+        this.contracts = contractsById;
     }
 }
