@@ -35,7 +35,6 @@ public class Contract {
     @JoinColumn(name = "manager", referencedColumnName = "id")
     private Manager manager;
 
-
     public Long getId() {
         return id;
     }
@@ -43,7 +42,6 @@ public class Contract {
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public Date getDate() {
         return date;
@@ -73,50 +71,24 @@ public class Contract {
         return car;
     }
 
-    public void setCar(Car carByCar) {
-        this.car = carByCar;
+    public void setCar(Car car) {
+        this.car = car;
     }
-
 
     public Client getClient() {
         return client;
     }
 
-    public void setClient(Client clientByClient) {
-        this.client = clientByClient;
+    public void setClient(Client client) {
+        this.client = client;
     }
-
 
     public Manager getManager() {
         return manager;
     }
 
-    public void setManager(Manager managerByManager) {
-        this.manager = managerByManager;
+    public void setManager(Manager manager) {
+        this.manager = manager;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Contract contract = (Contract) o;
-
-        if (id != null ? !id.equals(contract.id) : contract.id != null) return false;
-        if (date != null ? !date.equals(contract.date) : contract.date != null) return false;
-        if (amountOfDays != null ? !amountOfDays.equals(contract.amountOfDays) : contract.amountOfDays != null)
-            return false;
-        if (cost != null ? !cost.equals(contract.cost) : contract.cost != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (date != null ? date.hashCode() : 0);
-        result = 31 * result + (amountOfDays != null ? amountOfDays.hashCode() : 0);
-        result = 31 * result + (cost != null ? cost.hashCode() : 0);
-        return result;
-    }
 }

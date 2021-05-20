@@ -67,32 +67,6 @@ public class Car {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Car car = (Car) o;
-
-        if (id != null ? !id.equals(car.id) : car.id != null) return false;
-        if (model != null ? !model.equals(car.model) : car.model != null) return false;
-        if (color != null ? !color.equals(car.color) : car.color != null) return false;
-        if (price != null ? !price.equals(car.price) : car.price != null) return false;
-        if (availability != null ? !availability.equals(car.availability) : car.availability != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (model != null ? model.hashCode() : 0);
-        result = 31 * result + (color != null ? color.hashCode() : 0);
-        result = 31 * result + (price != null ? price.hashCode() : 0);
-        result = 31 * result + (availability != null ? availability.hashCode() : 0);
-        return result;
-    }
-
-    @Override
     public String toString() {
         return "id " + id +
                 ", model " + model +
@@ -105,7 +79,7 @@ public class Car {
         return contracts;
     }
 
-    public void setContracts(Collection<Contract> contractsById) {
-        this.contracts = contractsById;
+    public void setContracts(Collection<Contract> contracts) {
+        this.contracts = contracts;
     }
 }
