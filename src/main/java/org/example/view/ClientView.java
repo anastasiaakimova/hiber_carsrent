@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ClientView {
+
     private Scanner scanner = new Scanner(System.in);
     private Scanner scanner1 = new Scanner(System.in);
     private Scanner scanner2 = new Scanner(System.in);

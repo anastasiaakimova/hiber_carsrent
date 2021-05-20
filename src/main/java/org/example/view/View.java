@@ -3,22 +3,22 @@ package org.example.view;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class CommonView {
+public class View {
 
     private ClientView clientView;
-    private static CommonView view;
+    private static View view;
     private static CarView carView;
     private static ManagerView managerView;
-    private static ContractView contractView;
 
-    private CommonView() {
+    private View() {
         clientView = new ClientView();
         carView = new CarView();
+        managerView = new ManagerView();
     }
 
-    public static CommonView getInstance() {
+    public static View getInstance() {
         if (view == null) {
-            view = new CommonView();
+            view = new View();
         }
         return view;
     }
@@ -32,8 +32,7 @@ public class CommonView {
             System.out.println("1. Клиент");
             System.out.println("2. Машина");
             System.out.println("3. Менаджер");
-            System.out.println("4. Контракт");
-            System.out.println("5. Выход");
+            System.out.println("4. Выход");
 
             int number = scanner.nextInt();
             switch (number) {
@@ -47,9 +46,6 @@ public class CommonView {
                     runManager();
                     break;
                 case 4:
-                    runContract();
-                    break;
-                case 5:
                     go = false;
                     break;
                 default:
@@ -63,9 +59,6 @@ public class CommonView {
         managerView.run();
     }
 
-    private void runContract() throws SQLException {
-        contractView.run();
-    }
 
     public void runClient() throws SQLException {
         clientView.run();

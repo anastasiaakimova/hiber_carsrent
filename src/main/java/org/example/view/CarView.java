@@ -18,26 +18,26 @@ public class CarView {
     private CarController carController = new CarController();
 
     private void getByIdCar() throws SQLException {
-        System.out.println("Enter id in order to get car :");
+        System.out.println("Введите id машины :");
         Long id = Long.parseLong(scanner.next());
         try {
             if (carController.getCarById(id) != null){
                 System.out.println(carController.getCarById(id).toString());}
 
             else {
-                System.out.println("This id is doesn't exist");
+                System.out.println("Такой машины не существует");
             }
 
         } catch (NullPointerException | SQLException e) {
-            System.out.println("There is no such number ");
-            System.out.println("Try one more time, please");
+            System.out.println("Это не число");
+            System.out.println("Попробуйте еще раз, пожалуйста");
             getByIdCar();
         }
     }
 
     private void updateCar() throws SQLException{
         try {
-            System.out.println("Enter id in order to find element :");
+            System.out.println("Введите id магины которую хотите обновить :");
             Long id = Long.parseLong(scanner2.next());
 
             Car newCar;
@@ -66,7 +66,7 @@ public class CarView {
     }
 
     private void deleteCar() throws SQLException{
-        System.out.println("Enter id delete car : ");
+        System.out.println("Введите id для удаления машины : ");
         Long id = Long.parseLong(scanner.next());
         carController.deleteCar(id);
     }
@@ -99,21 +99,21 @@ public class CarView {
 
     private void showCar() throws SQLException{
         List<Car> cars = carController.getAllCars();
-        System.out.println("List of all cars : ");
+        System.out.println("Список всех машин : ");
         cars.forEach(car -> System.out.println(car.toString()));
     }
 
     public void run() throws SQLException {
         boolean go = true;
         while (go) {
-            System.out.println("\n Choose option, please :");
-            System.out.println(" Enter number : ");
-            System.out.println(" 1. Show all rows");
-            System.out.println(" 2. Insert new row");
-            System.out.println(" 3. Delete row ");
-            System.out.println(" 4. Update row  ");
-            System.out.println(" 5. Search by id ");
-            System.out.println(" 6. End ");
+            System.out.println("\n Выберите опцию :");
+            System.out.println(" Введите число : ");
+            System.out.println(" 1. Показать список машин");
+            System.out.println(" 2. Добавить машину");
+            System.out.println(" 3. Удалить машину ");
+            System.out.println(" 4. Обновить информацию о машине  ");
+            System.out.println(" 5. Найти машину по id ");
+            System.out.println(" 6. Выход ");
             int number = scanner.nextInt();
             switch (number) {
                 case 1:
@@ -135,11 +135,9 @@ public class CarView {
                     go = false;
                     break;
                 default:
-                    System.out.println("Wrong number");
-                    System.out.println("Enter number from 1 to 6, please");
+                    System.out.println("Не верное число");
+                    System.out.println("Выберите число от 1 до 6!");
             }
         }
     }
-
-
 }
