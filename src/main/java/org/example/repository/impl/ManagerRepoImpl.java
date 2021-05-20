@@ -2,57 +2,64 @@ package org.example.repository.impl;
 
 import org.example.entity.Manager;
 import org.example.repository.ManagerRepo;
-import org.example.util.SessionUtil;
+import org.example.util.HibernateUtil;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class ManagerRepoImpl extends SessionUtil implements ManagerRepo {
+public class ManagerRepoImpl implements ManagerRepo {
     private Session session;
+    private Transaction transaction;
 
     @Override
     public void add(Manager manager) throws SQLException {
-        openTransactionSession();
-        Session session = getSession();
+        session = HibernateUtil.getSessionFactory().openSession();
+        transaction = session.beginTransaction();
         session.save(manager);
-        closeTransactionSesstion();
+        transaction.commit();
+        session.close();
     }
 
     @Override
     public List<Manager> getAll() throws SQLException {
-        openTransactionSession();
+        session = HibernateUtil.getSessionFactory().openSession();
+        transaction = session.beginTransaction();
         String hql = "FROM Manager";
-        Session session = getSession();
         List<Manager> managers = session.createQuery(hql).list();
-        closeTransactionSesstion();
+        transaction.commit();
+        session.close();
         return managers;
     }
 
     @Override
     public Manager getById(Long id) throws SQLException {
-        openTransactionSession();
-        Session session = getSession();
+        session = HibernateUtil.getSessionFactory().openSession();
+        transaction = session.beginTransaction();
         Manager manager = session.get(Manager.class, id);
-        closeTransactionSesstion();
+        transaction.commit();
+        session.close();
         return manager;
     }
 
     @Override
     public Manager update(Manager manager) throws SQLException {
-        openTransactionSession();
-        Session session = getSession();
+        session = HibernateUtil.getSessionFactory().openSession();
+        transaction = session.beginTransaction();
         session.saveOrUpdate(manager);
-        closeTransactionSesstion();
+        transaction.commit();
+        session.close();
         return manager;
     }
 
     @Override
     public void remove(Long id) throws SQLException {
-        openTransactionSession();
-        Session session = getSession();
+        session = HibernateUtil.getSessionFactory().openSession();
+        transaction = session.beginTransaction();
         Manager manager = session.get(Manager.class, id);
         session.remove(manager);
-        closeTransactionSesstion();
+        transaction.commit();
+        session.close();
     }
 }

@@ -1,71 +1,66 @@
 package org.example.repository.impl;
 
 import org.example.entity.Client;
-import org.example.entity.Contract;
 import org.example.repository.ClientRepo;
-import org.example.util.SessionUtil;
+import org.example.util.HibernateUtil;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.sql.SQLException;
-import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 
-public class ClientRepoImpl extends SessionUtil implements ClientRepo {
+public class ClientRepoImpl implements ClientRepo {
 
     private Session session;
+    private Transaction transaction;
 
     @Override
     public void add(Client client) throws SQLException {
-        openTransactionSession();
-        Session session = getSession();
+        session = HibernateUtil.getSessionFactory().openSession();
+        transaction = session.beginTransaction();
         session.save(client);
-        closeTransactionSesstion();
+        transaction.commit();
+        session.close();
     }
 
     @Override
     public List<Client> getAll() throws SQLException {
-        openTransactionSession();
+        session = HibernateUtil.getSessionFactory().openSession();
+        transaction = session.beginTransaction();
         String hql = "FROM Client";
-        Session session = getSession();
         List<Client> clients = session.createQuery(hql).list();
-        closeTransactionSesstion();
+        transaction.commit();
+        session.close();
         return clients;
     }
 
     @Override
     public Client getById(Long id) throws SQLException {
-        openTransactionSession();
-        Session session = getSession();
+        session = HibernateUtil.getSessionFactory().openSession();
+        transaction = session.beginTransaction();
         Client client = session.get(Client.class, id);
-        closeTransactionSesstion();
+        transaction.commit();
+        session.close();
         return client;
     }
 
     @Override
     public Client update(Client client) throws SQLException {
-        openTransactionSession();
-        Session session = getSession();
+        session = HibernateUtil.getSessionFactory().openSession();
+        transaction = session.beginTransaction();
         session.saveOrUpdate(client);
-        closeTransactionSesstion();
+        transaction.commit();
+        session.close();
         return client;
     }
 
     @Override
     public void remove(Long id) throws SQLException {
-        openTransactionSession();
-        Session session = getSession();
+        session = HibernateUtil.getSessionFactory().openSession();
+        transaction = session.beginTransaction();
         Client client = session.get(Client.class, id);
         session.remove(client);
-        closeTransactionSesstion();
+        transaction.commit();
+        session.close();
     }
-
-//    public List<Contract> readContractList(Client client){
-//        Collection<Contract> contract = client.getContractsById();
-//        List<Contract> contracts = new LinkedList<>();
-//        for(Contract c : contract){
-//            contracts.add(c.getClientByClient());
-//        }
-//        return contracts;
-//    }
 }
