@@ -1,7 +1,7 @@
 package org.example.repository.impl;
 
 import org.example.entity.Manager;
-import org.example.repository.ManagerRepo;
+import org.example.repository.GenericRepo;
 import org.example.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -9,7 +9,7 @@ import org.hibernate.Transaction;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ManagerRepoImpl implements ManagerRepo {
+public class ManagerRepoImpl implements GenericRepo <Manager, Long> {
     private Session session;
     private Transaction transaction;
 

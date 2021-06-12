@@ -1,21 +1,21 @@
-package org.example.Controller;
+package org.example.controller;
 
 import org.example.entity.Contract;
-import org.example.repository.ContractRepo;
+import org.example.repository.GenericRepo;
 import org.example.repository.impl.ContractRepoImpl;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class ContractController {
-    private ContractRepo contractRepo = new ContractRepoImpl();
+    private GenericRepo contractRepo = new ContractRepoImpl();
 
     public Contract getContractById(Long id) throws SQLException {
-        return contractRepo.getById(id);
+        return (Contract)contractRepo.getById(id);
     }
 
     public Contract editContract(Contract contract) throws SQLException {
-        return contractRepo.update(contract);
+        return (Contract)contractRepo.update(contract);
     }
 
 

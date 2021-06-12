@@ -1,15 +1,16 @@
 package org.example.repository.impl;
 
 import org.example.entity.Client;
-import org.example.repository.ClientRepo;
+import org.example.repository.GenericRepo;
 import org.example.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+
 import java.sql.SQLException;
 import java.util.List;
 
-public class ClientRepoImpl implements ClientRepo {
+public class ClientRepoImpl implements GenericRepo <Client, Long> {
 
     private Session session;
     private Transaction transaction;

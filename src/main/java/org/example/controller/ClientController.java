@@ -1,21 +1,21 @@
-package org.example.Controller;
+package org.example.controller;
 
 import org.example.entity.Client;
-import org.example.repository.ClientRepo;
+import org.example.repository.GenericRepo;
 import org.example.repository.impl.ClientRepoImpl;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class ClientController {
-    private ClientRepo clientRepo = new ClientRepoImpl();
+    private GenericRepo clientRepo = new ClientRepoImpl();
 
     public Client getClientById(Long id) throws SQLException {
-        return clientRepo.getById(id);
+        return (Client)clientRepo.getById(id);
     }
 
     public Client editClient(Client client) throws SQLException {
-        return clientRepo.update(client);
+        return (Client)clientRepo.update(client);
     }
 
 

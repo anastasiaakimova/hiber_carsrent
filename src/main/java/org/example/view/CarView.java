@@ -1,6 +1,6 @@
 package org.example.view;
 
-import org.example.Controller.CarController;
+import org.example.controller.CarController;
 import org.example.entity.Car;
 import org.example.entity.Client;
 
@@ -10,14 +10,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CarView {
-    private Scanner scanner = new Scanner(System.in);
-    private Scanner scanner1 = new Scanner(System.in);
-    private Scanner scanner2 = new Scanner(System.in);
-    private Scanner scanner3 = new Scanner(System.in);
-    private Scanner scanner4 = new Scanner(System.in);
     private CarController carController = new CarController();
 
     private void getByIdCar() throws SQLException {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Введите id машины :");
         Long id = Long.parseLong(scanner.next());
         try {
@@ -37,26 +33,27 @@ public class CarView {
 
     private void updateCar() throws SQLException{
         try {
+            Scanner scanner = new Scanner(System.in);
             System.out.println("Введите id магины которую хотите обновить :");
-            Long id = Long.parseLong(scanner2.next());
+            Long id = Long.parseLong(scanner.next());
 
             Car newCar;
             newCar =carController.getCarById(id);
 
             System.out.println("Введите модель :");
-            String model = scanner3.nextLine();
+            String model = scanner.nextLine();
             newCar.setModel(model);
 
             System.out.println("Введите цвет :");
-            String color = scanner3.nextLine();
+            String color = scanner.nextLine();
             newCar.setColor(color);
 
             System.out.println("Введите цену :");
-            String price = scanner3.nextLine();
+            String price = scanner.nextLine();
             newCar.setPrice(Integer.valueOf(price));
 
             System.out.println("Введите мощность :");
-            String availability = scanner3.nextLine();
+            String availability = scanner.nextLine();
             newCar.setAvailability(Integer.valueOf(availability));
 
             carController.editCar(newCar);
@@ -66,6 +63,7 @@ public class CarView {
     }
 
     private void deleteCar() throws SQLException{
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Введите id для удаления машины : ");
         Long id = Long.parseLong(scanner.next());
         carController.deleteCar(id);
@@ -73,22 +71,23 @@ public class CarView {
 
     private void saveCar() throws SQLException{
         try {
+            Scanner scanner = new Scanner(System.in);
             Car newCar = new Car();
 
             System.out.println("Введите модель :");
-            String model = scanner3.nextLine();
+            String model = scanner.nextLine();
             newCar.setModel(model);
 
             System.out.println("Введите цвет :");
-            String color = scanner3.nextLine();
+            String color = scanner.nextLine();
             newCar.setColor(color);
 
             System.out.println("Введите цену :");
-            String price = scanner3.nextLine();
+            String price = scanner.nextLine();
             newCar.setPrice(Integer.valueOf(price));
 
             System.out.println("Введите мощность :");
-            String availability = scanner3.nextLine();
+            String availability = scanner.nextLine();
             newCar.setAvailability(Integer.valueOf(availability));
 
             carController.editCar(newCar);
@@ -114,6 +113,7 @@ public class CarView {
             System.out.println(" 4. Обновить информацию о машине  ");
             System.out.println(" 5. Найти машину по id ");
             System.out.println(" 6. Выход ");
+            Scanner scanner = new Scanner(System.in);
             int number = scanner.nextInt();
             switch (number) {
                 case 1:

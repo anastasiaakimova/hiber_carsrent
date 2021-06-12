@@ -1,7 +1,7 @@
 package org.example.view;
 
-import org.example.Controller.ClientController;
-import org.example.Controller.ManagerController;
+import org.example.controller.ClientController;
+import org.example.controller.ManagerController;
 import org.example.entity.Client;
 import org.example.entity.Manager;
 
@@ -12,11 +12,6 @@ import java.util.Scanner;
 
 public class ManagerView {
 
-    private Scanner scanner = new Scanner(System.in);
-    private Scanner scanner1 = new Scanner(System.in);
-    private Scanner scanner2 = new Scanner(System.in);
-    private Scanner scanner3 = new Scanner(System.in);
-    private Scanner scanner4 = new Scanner(System.in);
     private ManagerController managerController = new ManagerController();
 
     public void showManagers() throws SQLException {
@@ -27,18 +22,19 @@ public class ManagerView {
 
     public void saveManager() {
         try {
+            Scanner scanner = new Scanner(System.in);
             Manager newManager = new Manager();
 
             System.out.println("Введите имя :");
-            String firstName = scanner1.nextLine();
+            String firstName = scanner.nextLine();
             newManager.setFirstName(firstName);
 
             System.out.println("Введите фамилию :");
-            String lastName = scanner1.nextLine();
+            String lastName = scanner.nextLine();
             newManager.setLastName(lastName);
 
             System.out.println("Введите номер телефона:");
-            String phoneNumber = scanner1.nextLine();
+            String phoneNumber = scanner.nextLine();
             newManager.setPhoneNumber(phoneNumber);
 
             managerController.saveManager(newManager);
@@ -50,28 +46,30 @@ public class ManagerView {
 
     public void deleteManager() throws SQLException {
         System.out.println("Введите id менеджера, которого хотите удалить : ");
+        Scanner scanner = new Scanner(System.in);
         Long id = Long.parseLong(scanner.next());
         managerController.deleteManager(id);
     }
 
     public void updateManager() throws SQLException {
         try {
+            Scanner scanner = new Scanner(System.in);
             System.out.println("Введите id менеджера, информацию которого хотите изменить:");
-            Long id = Long.parseLong(scanner2.next());
+            Long id = Long.parseLong(scanner.next());
 
             Manager newManager;
             newManager =managerController.getMangerById(id);
 
             System.out.println("Введите имя :");
-            String firstName = scanner3.nextLine();
+            String firstName = scanner.nextLine();
             newManager.setFirstName(firstName);
 
             System.out.println("Введите фамилию :");
-            String lastName = scanner3.nextLine();
+            String lastName = scanner.nextLine();
             newManager.setLastName(lastName);
 
             System.out.println("Введите номер телефона:");
-            String phoneNumber = scanner3.nextLine();
+            String phoneNumber = scanner.nextLine();
             newManager.setPhoneNumber(phoneNumber);
 
             managerController.editManager(newManager);
@@ -81,6 +79,7 @@ public class ManagerView {
     }
 
     public void getByIdManager() throws SQLException {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("введите id менеджера которго хотите найти:");
         Long id = Long.parseLong(scanner.next());
         try {
@@ -109,6 +108,7 @@ public class ManagerView {
             System.out.println(" 4. Обновить информацию о клиенте  ");
             System.out.println(" 5. Найти по id");
             System.out.println(" 6. Выйти ");
+            Scanner scanner = new Scanner(System.in);
             int number = scanner.nextInt();
             switch (number) {
                 case 1:

@@ -1,7 +1,7 @@
 package org.example.repository.impl;
 
 import org.example.entity.Car;
-import org.example.repository.CarRepo;
+import org.example.repository.GenericRepo;
 import org.example.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -9,7 +9,7 @@ import org.hibernate.Transaction;
 import java.sql.SQLException;
 import java.util.List;
 
-public class CarRepoImpl implements CarRepo {
+public class CarRepoImpl implements GenericRepo <Car, Long> {
 
     private Session session;
     private Transaction transaction;

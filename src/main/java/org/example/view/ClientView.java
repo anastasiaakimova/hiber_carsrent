@@ -1,6 +1,6 @@
 package org.example.view;
 
-import org.example.Controller.ClientController;
+import org.example.controller.ClientController;
 import org.example.entity.Client;
 
 import java.sql.SQLException;
@@ -10,11 +10,6 @@ import java.util.Scanner;
 
 public class ClientView {
 
-    private Scanner scanner = new Scanner(System.in);
-    private Scanner scanner1 = new Scanner(System.in);
-    private Scanner scanner2 = new Scanner(System.in);
-    private Scanner scanner3 = new Scanner(System.in);
-    private Scanner scanner4 = new Scanner(System.in);
     private ClientController clientController = new ClientController();
 
     public void showClients() throws SQLException {
@@ -25,26 +20,27 @@ public class ClientView {
 
     public void saveClient() {
         try {
+            Scanner scanner = new Scanner(System.in);
             Client newClient = new Client();
 
             System.out.println("Введите имя :");
-            String firstName = scanner1.nextLine();
+            String firstName = scanner.nextLine();
             newClient.setFirstName(firstName);
 
             System.out.println("Введите фамилию :");
-            String lastName = scanner1.nextLine();
+            String lastName = scanner.nextLine();
             newClient.setLastName(lastName);
 
             System.out.println("Введите пароль :");
-            String password = scanner1.nextLine();
+            String password = scanner.nextLine();
             newClient.setPassword(password);
 
             System.out.println("Введите адрес :");
-            String address = scanner1.nextLine();
+            String address = scanner.nextLine();
             newClient.setAddress(address);
 
             System.out.println("Введите номер телефона:");
-            String phoneNumber = scanner1.nextLine();
+            String phoneNumber = scanner.nextLine();
             newClient.setPhoneNumber(phoneNumber);
 
             clientController.saveClient(newClient);
@@ -55,6 +51,7 @@ public class ClientView {
     }
 
     public void deleteClient() throws SQLException {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Введите id клиента, которого хотите удалить : ");
         Long id = Long.parseLong(scanner.next());
         clientController.deleteClient(id);
@@ -62,30 +59,31 @@ public class ClientView {
 
     public void updateClient() throws SQLException {
         try {
+            Scanner scanner = new Scanner(System.in);
             System.out.println("Введите id клиента, информацию которого хотите изменить:");
-            Long id = Long.parseLong(scanner2.next());
+            Long id = Long.parseLong(scanner.next());
 
             Client newClient;
             newClient =clientController.getClientById(id);
 
             System.out.println("Введите имя :");
-            String firstName = scanner3.nextLine();
+            String firstName = scanner.nextLine();
             newClient.setFirstName(firstName);
 
             System.out.println("Введите фамилию :");
-            String lastName = scanner3.nextLine();
+            String lastName = scanner.nextLine();
             newClient.setLastName(lastName);
 
             System.out.println("Введите пароль :");
-            String password = scanner3.nextLine();
+            String password = scanner.nextLine();
             newClient.setPassword(password);
 
             System.out.println("Введите адрес :");
-            String address = scanner3.nextLine();
+            String address = scanner.nextLine();
             newClient.setAddress(address);
 
             System.out.println("Введите номер телефона:");
-            String phoneNumber = scanner3.nextLine();
+            String phoneNumber = scanner.nextLine();
             newClient.setPhoneNumber(phoneNumber);
 
             clientController.editClient(newClient);
@@ -95,6 +93,7 @@ public class ClientView {
     }
 
     public void getByIdClient() throws SQLException {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("введите id клиента которго хотите найти:");
         Long id = Long.parseLong(scanner.next());
         try {
@@ -123,6 +122,7 @@ public class ClientView {
             System.out.println(" 4. Обновить информацию о клиенте  ");
             System.out.println(" 5. Найти по id");
             System.out.println(" 6. Выйти ");
+            Scanner scanner = new Scanner(System.in);
             int number = scanner.nextInt();
             switch (number) {
                 case 1:
